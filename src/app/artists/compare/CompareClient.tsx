@@ -153,7 +153,7 @@ export default function CompareClient({ artists }: { artists: ArtistRow[] }) {
                       const val = tax ? tax[dim.key]?.rating ?? 0 : 0;
                       return (
                         <div key={artist.id} className="flex items-center gap-2">
-                          <span className={`w-24 truncate text-xs ${TEXT_COLORS[idx % TEXT_COLORS.length]}`}>
+                          <span className={`w-20 shrink-0 truncate text-xs sm:w-28 ${TEXT_COLORS[idx % TEXT_COLORS.length]}`}>
                             {artist.name}
                           </span>
                           <RatingBar

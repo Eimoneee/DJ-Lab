@@ -20,7 +20,7 @@ export default async function LabPage() {
   return (
     <AppShell>
       <div className="space-y-6">
-        <div className="flex items-center justify-between">
+        <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
           <div>
             <h1 className="text-2xl font-bold text-white">
               Reverse-Engineering Lab
@@ -29,7 +29,7 @@ export default async function LabPage() {
               Break down reference tracks to understand what makes them work
             </p>
           </div>
-          <Link href="/lab/new" className="btn-primary">
+          <Link href="/lab/new" className="btn-primary shrink-0">
             + New Analysis
           </Link>
         </div>

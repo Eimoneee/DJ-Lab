@@ -18,6 +18,7 @@ interface ArtistFormProps {
 export default function ArtistForm({ userId, existing }: ArtistFormProps) {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
   const [form, setForm] = useState({
     name: existing?.name ?? "",
     genre_tags: existing?.genre_tags?.join(", ") ?? "",
@@ -65,48 +66,54 @@ export default function ArtistForm({ userId, existing }: ArtistFormProps) {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
+    setError(null);
 
-    const supabase = createClient();
-    const payload = {
-      name: form.name,
-      genre_tags: form.genre_tags
-        .split(",")
-        .map((t) => t.trim())
-        .filter(Boolean),
-      signature_sounds: form.signature_sounds,
-      key_tracks: form.key_tracks,
-      production_notes: form.production_notes,
-      mixing_traits: form.mixing_traits,
-      drum_patterns: form.drum_patterns,
-      bass_style: form.bass_style,
-      arrangement_tendencies: form.arrangement_tendencies,
-      fx_techniques: form.fx_techniques,
-      energy_flow: form.energy_flow,
-      sample_palette: form.sample_palette,
-      reference_artists: form.reference_artists,
-      summary: form.summary,
-      taxonomy: showTaxonomy ? taxonomy : null,
-    };
+    try {
+      const supabase = createClient();
+      const payload = {
+        name: form.name,
+        genre_tags: form.genre_tags
+          .split(",")
+          .map((t) => t.trim())
+          .filter(Boolean),
+        signature_sounds: form.signature_sounds,
+        key_tracks: form.key_tracks,
+        production_notes: form.production_notes,
+        mixing_traits: form.mixing_traits,
+        drum_patterns: form.drum_patterns,
+        bass_style: form.bass_style,
+        arrangement_tendencies: form.arrangement_tendencies,
+        fx_techniques: form.fx_techniques,
+        energy_flow: form.energy_flow,
+        sample_palette: form.sample_palette,
+        reference_artists: form.reference_artists,
+        summary: form.summary,
+        taxonomy: showTaxonomy ? taxonomy : null,
+      };
 
-    if (existing) {
-      await supabase
-        .from("artist_sound_maps")
-        .update({ ...payload, updated_at: new Date().toISOString() })
-        .eq("id", existing.id);
-      router.push(`/artists/${existing.id}`);
-    } else {
-      const { data } = await supabase
-        .from("artist_sound_maps")
-        .insert({ ...payload, user_id: userId })
-        .select("id")
-        .single();
-      if (data) {
-        router.push(`/artists/${data.id}`);
+      if (existing) {
+        const { error: dbError } = await supabase
+          .from("artist_sound_maps")
+          .update({ ...payload, updated_at: new Date().toISOString() })
+          .eq("id", existing.id);
+        if (dbError) throw new Error(dbError.message);
+        router.push(`/artists/${existing.id}`);
+      } else {
+        const { data, error: dbError } = await supabase
+          .from("artist_sound_maps")
+          .insert({ ...payload, user_id: userId })
+          .select("id")
+          .single();
+        if (dbError) throw new Error(dbError.message);
+        if (data) {
+          router.push(`/artists/${data.id}`);
+        }
       }
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Failed to save artist");
+    } finally {
+      setLoading(false);
     }
-
-    router.refresh();
-    setLoading(false);
   };
 
   const set = (key: string, value: string) =>
@@ -127,6 +134,11 @@ export default function ArtistForm({ userId, existing }: ArtistFormProps) {
       </div>
 
       <form onSubmit={handleSubmit} className="space-y-4">
+        {error && (
+          <div className="rounded-lg border border-red-500/50 bg-red-500/10 px-4 py-3 text-sm text-red-400">
+            {error}
+          </div>
+        )}
         {/* Identity */}
         <div className="card space-y-4">
           <h2 className="text-sm font-semibold uppercase tracking-wider text-gray-400">

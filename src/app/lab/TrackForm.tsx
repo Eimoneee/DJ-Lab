@@ -18,6 +18,7 @@ const ENERGY_LEVELS = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 export default function TrackForm({ userId, existing }: TrackFormProps) {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
   const [form, setForm] = useState({
     track_name: existing?.track_name ?? "",
     artist: existing?.artist ?? "",
@@ -41,47 +42,53 @@ export default function TrackForm({ userId, existing }: TrackFormProps) {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
+    setError(null);
 
-    const supabase = createClient();
-    const payload = {
-      track_name: form.track_name,
-      artist: form.artist,
-      bpm: form.bpm,
-      key: form.key,
-      genre: form.genre,
-      subgenre: form.subgenre,
-      energy_rating: form.energy_rating,
-      reference_notes: form.reference_notes,
-      drums_analysis: form.drums_analysis,
-      bassline_analysis: form.bassline_analysis,
-      groove_swing_notes: form.groove_swing_notes,
-      arrangement_timeline: form.arrangement_timeline,
-      tension_release: form.tension_release,
-      fx_notes: form.fx_notes,
-      study_loop_ideas: form.study_loop_ideas,
-      distinctive_elements: form.distinctive_elements,
-      curriculum_connections: form.curriculum_connections,
-    };
+    try {
+      const supabase = createClient();
+      const payload = {
+        track_name: form.track_name,
+        artist: form.artist,
+        bpm: form.bpm,
+        key: form.key,
+        genre: form.genre,
+        subgenre: form.subgenre,
+        energy_rating: form.energy_rating,
+        reference_notes: form.reference_notes,
+        drums_analysis: form.drums_analysis,
+        bassline_analysis: form.bassline_analysis,
+        groove_swing_notes: form.groove_swing_notes,
+        arrangement_timeline: form.arrangement_timeline,
+        tension_release: form.tension_release,
+        fx_notes: form.fx_notes,
+        study_loop_ideas: form.study_loop_ideas,
+        distinctive_elements: form.distinctive_elements,
+        curriculum_connections: form.curriculum_connections,
+      };
 
-    if (existing) {
-      await supabase
-        .from("track_analyses")
-        .update({ ...payload, updated_at: new Date().toISOString() })
-        .eq("id", existing.id);
-      router.push(`/lab/${existing.id}`);
-    } else {
-      const { data } = await supabase
-        .from("track_analyses")
-        .insert({ ...payload, user_id: userId })
-        .select("id")
-        .single();
-      if (data) {
-        router.push(`/lab/${data.id}`);
+      if (existing) {
+        const { error: dbError } = await supabase
+          .from("track_analyses")
+          .update({ ...payload, updated_at: new Date().toISOString() })
+          .eq("id", existing.id);
+        if (dbError) throw new Error(dbError.message);
+        router.push(`/lab/${existing.id}`);
+      } else {
+        const { data, error: dbError } = await supabase
+          .from("track_analyses")
+          .insert({ ...payload, user_id: userId })
+          .select("id")
+          .single();
+        if (dbError) throw new Error(dbError.message);
+        if (data) {
+          router.push(`/lab/${data.id}`);
+        }
       }
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Failed to save track study");
+    } finally {
+      setLoading(false);
     }
-
-    router.refresh();
-    setLoading(false);
   };
 
   const set = (key: string, value: string | number) =>
@@ -99,6 +106,11 @@ export default function TrackForm({ userId, existing }: TrackFormProps) {
       </div>
 
       <form onSubmit={handleSubmit} className="space-y-4">
+        {error && (
+          <div className="rounded-lg border border-red-500/50 bg-red-500/10 px-4 py-3 text-sm text-red-400">
+            {error}
+          </div>
+        )}
         {/* Track Info */}
         <div className="card space-y-4">
           <h2 className="text-sm font-semibold uppercase tracking-wider text-gray-400">

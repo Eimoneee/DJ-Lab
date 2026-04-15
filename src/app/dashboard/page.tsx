@@ -240,8 +240,8 @@ export default async function DashboardPage() {
                         {mod.title}
                       </span>
                       {!isUnlocked && (
-                        <span className="rounded-full bg-gray-800 px-2 py-0.5 text-xs text-gray-500">
-                          🔒 Complete {prevModule?.title} (80%+) to unlock
+                        <span className="shrink-0 rounded-full bg-gray-800 px-2 py-0.5 text-xs text-gray-500">
+                          🔒 Locked
                         </span>
                       )}
                     </div>

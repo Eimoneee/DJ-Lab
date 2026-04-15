@@ -146,7 +146,7 @@ npm install
 1. Run `npm run build` locally first — fix any errors
 2. Make sure environment variables are set in Vercel:
    - `NEXT_PUBLIC_SUPABASE_URL`
-   - `NEXT_PUBLIC_SUPABASE_ANON_KEY`
+   - `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY`
 3. Check that all dependencies are in `package.json` (not just installed locally)
 
 ### App works locally but not on Vercel

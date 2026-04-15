@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
 import type { Database } from "@/types/database";
@@ -8,12 +9,19 @@ type PracticeLog = Database["public"]["Tables"]["practice_logs"]["Row"];
 
 export default function PracticeList({ logs }: { logs: PracticeLog[] }) {
   const router = useRouter();
+  const [error, setError] = useState<string | null>(null);
 
   const handleDelete = async (id: string) => {
     if (!confirm("Delete this practice log?")) return;
-    const supabase = createClient();
-    await supabase.from("practice_logs").delete().eq("id", id);
-    router.refresh();
+    setError(null);
+    try {
+      const supabase = createClient();
+      const { error: dbError } = await supabase.from("practice_logs").delete().eq("id", id);
+      if (dbError) throw new Error(dbError.message);
+      router.refresh();
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Failed to delete practice log");
+    }
   };
 
   if (logs.length === 0) {
@@ -27,6 +35,11 @@ export default function PracticeList({ logs }: { logs: PracticeLog[] }) {
   return (
     <div className="space-y-3">
       <h2 className="text-lg font-semibold text-white">History</h2>
+      {error && (
+        <div className="rounded-lg border border-red-500/50 bg-red-500/10 px-4 py-3 text-sm text-red-400">
+          {error}
+        </div>
+      )}
       {logs.map((log) => (
         <div key={log.id} className="card">
           <div className="flex items-start justify-between">

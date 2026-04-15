@@ -67,7 +67,7 @@ cp .env.local.example .env.local
 | Variable | Where to find it |
 |---|---|
 | `NEXT_PUBLIC_SUPABASE_URL` | Supabase → Settings → API → Project URL |
-| `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Supabase → Settings → API → anon / public key |
+| `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY` | Supabase → Settings → API → anon / publishable key |
 
 ---
 
@@ -204,7 +204,7 @@ Full schema details: [docs/database-schema.md](docs/database-schema.md)
 
 1. Push to GitHub
 2. Import the repo in [Vercel](https://vercel.com)
-3. Add environment variables: `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY`
+3. Add environment variables: `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY`
 4. Deploy
 
 ---

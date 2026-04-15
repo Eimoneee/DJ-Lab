@@ -20,7 +20,7 @@ export default async function ArtistsPage() {
   return (
     <AppShell>
       <div className="space-y-6">
-        <div className="flex items-center justify-between">
+        <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
           <div>
             <h1 className="text-2xl font-bold text-white">
               Artist Sound Maps
@@ -29,7 +29,7 @@ export default async function ArtistsPage() {
               Study the sounds and techniques of artists you admire
             </p>
           </div>
-          <div className="flex gap-2">
+          <div className="flex gap-2 shrink-0">
             <Link href="/artists/compare" className="btn-secondary">
               Compare
             </Link>
