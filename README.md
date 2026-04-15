@@ -145,8 +145,11 @@ src/
 │   │   ├── client.ts           # Browser client (client components)
 │   │   ├── server.ts           # Server client (server components, actions)
 │   │   └── middleware.ts       # Middleware client (auth checks)
+│   ├── bar-math.ts             # BPM/bar calculations for arrangement timeline
 │   └── __tests__/              # Unit tests (Jest)
-│       └── progress.test.ts    # Progression logic + seed data tests
+│       ├── progress.test.ts    # Progression logic + seed data tests
+│       ├── bar-math.test.ts    # BPM/bar math + timeline parsing tests
+│       └── save-logic.test.ts  # Save error handling regression tests
 ├── types/
 │   ├── database.ts             # Supabase database types (Row/Insert/Update)
 │   └── taxonomy.ts             # Taxonomy dimension types + constants
@@ -220,6 +223,11 @@ Full schema details: [docs/database-schema.md](docs/database-schema.md)
 | [docs/modules.md](docs/modules.md) | Module-by-module technical documentation |
 | [docs/debugging-playbook.md](docs/debugging-playbook.md) | Common issues and how to fix them |
 | [docs/prompt-library.md](docs/prompt-library.md) | Prompts for extending DJ Lab |
+| [docs/architecture-map.md](docs/architecture-map.md) | Full technical architecture with diagrams |
+| [docs/roadmap-next-steps.md](docs/roadmap-next-steps.md) | Prioritized next steps with Devin prompts |
+| [docs/final-handoff.md](docs/final-handoff.md) | Complete project handoff for non-technical owner |
+| [docs/non-technical-owner-guide.md](docs/non-technical-owner-guide.md) | Plain-English guide for managing the project |
+| [docs/project-index.md](docs/project-index.md) | Single source of truth — links to every resource |
 | [CONTRIBUTING.md](CONTRIBUTING.md) | How to make changes (solo owner guide) |
 | [CHANGELOG.md](CHANGELOG.md) | Version history and what changed |
 

@@ -84,7 +84,7 @@ npm run validate
 # Or run individually:
 npm run lint          # ESLint
 npm run typecheck     # TypeScript
-npm test              # Jest tests (24 tests)
+npm test              # Jest tests (57 tests)
 npm run build         # Full production build
 ```
 

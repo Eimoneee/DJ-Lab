@@ -130,9 +130,11 @@ npm install
 
 **Fix:**
 1. Read the test output — it tells you exactly what failed and why
-2. The test file is at `src/lib/__tests__/progress.test.ts`
-3. Tests check: progression logic, progress bar math, and seed data structure
-4. If you changed seed data, you may need to update the test expectations (e.g., lesson counts per phase)
+2. Test files are in `src/lib/__tests__/`:
+   - `progress.test.ts` — progression logic, progress bar math, seed data structure
+   - `bar-math.test.ts` — BPM/bar math calculations, timeline parsing
+   - `save-logic.test.ts` — save error handling regressions
+3. If you changed seed data, you may need to update the test expectations (e.g., lesson counts per phase)
 
 ---
 

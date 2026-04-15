@@ -34,7 +34,7 @@ modules (1:many) → lessons (1:many) → exercises
 
 | Column      | Type        | Notes                          |
 | ----------- | ----------- | ------------------------------ |
-| id          | uuid PK     | Default gen_random_uuid()      |
+| id          | text PK     | Human-readable ID (e.g. `mod-phase1`) |
 | title       | text        | Module title                   |
 | description | text        | Short description              |
 | category    | text        | e.g. "fundamentals", "mixing"  |
@@ -46,8 +46,8 @@ modules (1:many) → lessons (1:many) → exercises
 
 | Column      | Type        | Notes                          |
 | ----------- | ----------- | ------------------------------ |
-| id          | uuid PK     | Default gen_random_uuid()      |
-| module_id   | uuid FK     | References modules.id          |
+| id          | text PK     | Human-readable ID (e.g. `les-1-01`) |
+| module_id   | text FK     | References modules.id          |
 | title       | text        | Lesson title                   |
 | description | text        | Short summary                  |
 | content_md  | text        | Markdown lesson content        |
@@ -58,8 +58,8 @@ modules (1:many) → lessons (1:many) → exercises
 
 | Column      | Type        | Notes                          |
 | ----------- | ----------- | ------------------------------ |
-| id          | uuid PK     | Default gen_random_uuid()      |
-| lesson_id   | uuid FK     | References lessons.id          |
+| id          | text PK     | Human-readable ID (e.g. `ex-p1-01-01`) |
+| lesson_id   | text FK     | References lessons.id          |
 | title       | text        | Exercise title                 |
 | description | text        | Instructions / what to do      |
 | order_index | integer     | Display order within lesson    |
@@ -71,7 +71,7 @@ modules (1:many) → lessons (1:many) → exercises
 | ------------ | ----------- | ------------------------------ |
 | id           | uuid PK     | Default gen_random_uuid()      |
 | user_id      | uuid FK     | References auth.users.id       |
-| lesson_id    | uuid FK     | References lessons.id          |
+| lesson_id    | text FK     | References lessons.id          |
 | completed    | boolean     | Default false                  |
 | completed_at | timestamptz | Null until completed           |
 | created_at   | timestamptz | Default now()                  |
@@ -84,7 +84,7 @@ Unique constraint on (user_id, lesson_id).
 | ------------ | ----------- | ------------------------------ |
 | id           | uuid PK     | Default gen_random_uuid()      |
 | user_id      | uuid FK     | References auth.users.id       |
-| exercise_id  | uuid FK     | References exercises.id        |
+| exercise_id  | text FK     | References exercises.id        |
 | completed    | boolean     | Default false                  |
 | completed_at | timestamptz | Null until completed           |
 | created_at   | timestamptz | Default now()                  |
@@ -116,6 +116,18 @@ Unique constraint on (user_id, exercise_id).
 | bpm              | integer     | Track BPM                      |
 | key              | text        | Musical key                    |
 | genre            | text        | Genre tag                      |
+| subgenre         | text        | Subgenre (added in migration 2) |
+| energy_rating    | integer     | 1–10 energy scale               |
+| reference_notes  | text        | Why this track was chosen       |
+| drums_analysis   | text        | Kick, hats, percussion details  |
+| bassline_analysis| text        | Bass type, movement, patterns   |
+| groove_swing_notes| text       | Groove and swing characteristics |
+| arrangement_timeline| text     | Section-by-section in bars      |
+| tension_release  | text        | Tension/release techniques      |
+| fx_notes         | text        | FX and automation details       |
+| study_loop_ideas | text        | What to recreate in a study loop|
+| distinctive_elements| text     | What makes the track unique     |
+| curriculum_connections| text   | Related curriculum lessons      |
 | structure        | text        | Breakdown (intro, drop, etc.)  |
 | sound_design     | text        | Bass, synths, percussion notes |
 | mixing_notes     | text        | FX and mixing observations     |
@@ -134,6 +146,16 @@ Unique constraint on (user_id, exercise_id).
 | signature_sounds | text        | What makes them recognizable   |
 | key_tracks       | text        | Notable tracks                 |
 | production_notes | text        | Production techniques          |
+| mixing_traits    | text        | Mixing style notes (added in migration 2) |
+| drum_patterns    | text        | Recurring drum patterns         |
+| bass_style       | text        | Bass characteristics            |
+| arrangement_tendencies | text  | Arrangement habits              |
+| fx_techniques    | text        | FX usage patterns               |
+| energy_flow      | text        | Energy management across tracks |
+| sample_palette   | text        | Sample and sound choices        |
+| reference_artists| text        | Similar/influenced-by artists   |
+| taxonomy         | jsonb       | 7-dimension sonic ratings (added in migration 3) |
+| summary          | text        | Brief artist summary (added in migration 3) |
 | created_at       | timestamptz | Default now()                  |
 | updated_at       | timestamptz | Default now()                  |
 
