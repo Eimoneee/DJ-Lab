@@ -13,6 +13,22 @@ export default function LoginPage() {
   const [error, setError] = useState<string | null>(null);
   const [message, setMessage] = useState<string | null>(null);
 
+  const friendlyError = (msg: string): string => {
+    const lower = msg.toLowerCase();
+    if (lower.includes("rate limit") || lower.includes("too many"))
+      return "Too many attempts. Wait a minute.";
+    if (lower.includes("invalid login") || lower.includes("invalid email or password"))
+      return "Incorrect email or password.";
+    if (lower.includes("user already registered"))
+      return "This email is already registered.";
+    if (lower.includes("password") && lower.includes("short"))
+      return "Password must be at least 6 characters.";
+    if (lower.includes("email") && lower.includes("invalid"))
+      return "Please enter a valid email address.";
+    if (msg.length > 40) return msg.slice(0, 40) + "…";
+    return msg;
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
@@ -31,7 +47,7 @@ export default function LoginPage() {
           },
         });
         if (error) {
-          setError(error.message);
+          setError(friendlyError(error.message));
         } else if (data.session) {
           // User was auto-confirmed — redirect to dashboard
           router.push("/dashboard");
@@ -44,14 +60,14 @@ export default function LoginPage() {
           password,
         });
         if (error) {
-          setError(error.message);
+          setError(friendlyError(error.message));
         } else {
           router.push("/dashboard");
         }
       }
     } catch (err) {
       setError(
-        err instanceof Error ? err.message : "Something went wrong. Please try again."
+        err instanceof Error ? friendlyError(err.message) : "Something went wrong. Please try again."
       );
     } finally {
       setLoading(false);
