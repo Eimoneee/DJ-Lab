@@ -322,6 +322,8 @@ export interface Database {
           energy_flow: string | null;
           sample_palette: string | null;
           reference_artists: string | null;
+          taxonomy: Json | null;
+          summary: string | null;
           created_at: string;
           updated_at: string;
         };
@@ -341,6 +343,8 @@ export interface Database {
           energy_flow?: string | null;
           sample_palette?: string | null;
           reference_artists?: string | null;
+          taxonomy?: Json | null;
+          summary?: string | null;
           created_at?: string;
           updated_at?: string;
         };
@@ -358,6 +362,8 @@ export interface Database {
           energy_flow?: string | null;
           sample_palette?: string | null;
           reference_artists?: string | null;
+          taxonomy?: Json | null;
+          summary?: string | null;
           updated_at?: string;
         };
         Relationships: [];
