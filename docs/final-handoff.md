@@ -39,8 +39,10 @@ DJ Lab is a private web app for learning DJing and music production from scratch
 | Tests (57 passing) | Done |
 | Documentation suite | Done |
 | Deployment config (Vercel-ready) | Done |
-| **Live deployment** | **Not yet deployed** |
-| **End-to-end testing against live Supabase** | **Not yet done** |
+| Live deployment | Done — https://dj-lab.vercel.app |
+| End-to-end testing against live Supabase | Done — all 6 flows passed |
+| CI/CD pipeline | Done — GitHub Actions on every push/PR |
+| Email confirmation | Disabled — accounts auto-confirm on signup |
 
 **Build status:** `npm run build` passes. `npm run validate` (lint + typecheck + 57 tests) passes.
 
@@ -98,13 +100,13 @@ These features were not built but would be natural next steps:
 | Item | Description | Priority |
 |---|---|---|
 | Audio playback | Play reference tracks directly in the lab (Spotify/SoundCloud embed or file upload) | Medium |
-| Email confirmation flow | Currently relies on Supabase's default — no custom confirmation email template | Low |
+| Email confirmation flow | Disabled in Supabase Auth settings — accounts auto-confirm. Re-enable if SMTP is configured. | Low |
 | Curriculum admin UI | Add/edit/reorder lessons through the app instead of editing JSON | Medium |
 | Search/filter | Search across tracks, artists, lessons | Medium |
 | Export practice data | CSV/PDF export of practice history | Low |
 | Mobile app | Native mobile wrapper (PWA or React Native) | Low |
 | Multiple users | The app supports multiple users via RLS, but there's no admin role or shared content | Low |
-| CI/CD pipeline | No GitHub Actions — all checks are local only (`npm run validate`) | Medium |
+| CI/CD pipeline | Done — `.github/workflows/ci.yml` runs lint + typecheck + tests on every push/PR | Done |
 | Supabase typed client | Database types are manually maintained, not auto-generated from schema | Low |
 | Taxonomy auto-import | The `artist-taxonomy.json` seed file isn't auto-imported — you paste it into the app manually | Low |
 
