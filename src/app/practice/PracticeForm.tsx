@@ -19,6 +19,7 @@ export default function PracticeForm({ userId }: { userId: string }) {
   const router = useRouter();
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
   const [form, setForm] = useState({
     date: new Date().toISOString().split("T")[0],
     duration_minutes: 30,
@@ -31,14 +32,20 @@ export default function PracticeForm({ userId }: { userId: string }) {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
+    setError(null);
 
-    const supabase = createClient();
-    const { error } = await supabase.from("practice_logs").insert({
-      user_id: userId,
-      ...form,
-    });
+    try {
+      const supabase = createClient();
+      const { error: insertError } = await supabase.from("practice_logs").insert({
+        user_id: userId,
+        ...form,
+      });
 
-    if (!error) {
+      if (insertError) {
+        setError(insertError.message);
+        return;
+      }
+
       setForm({
         date: new Date().toISOString().split("T")[0],
         duration_minutes: 30,
@@ -49,9 +56,13 @@ export default function PracticeForm({ userId }: { userId: string }) {
       });
       setOpen(false);
       router.refresh();
+    } catch (err) {
+      setError(
+        err instanceof Error ? err.message : "Failed to save. Please try again."
+      );
+    } finally {
+      setLoading(false);
     }
-
-    setLoading(false);
   };
 
   if (!open) {
@@ -65,6 +76,12 @@ export default function PracticeForm({ userId }: { userId: string }) {
   return (
     <form onSubmit={handleSubmit} className="card space-y-4">
       <h2 className="text-lg font-semibold text-white">New Practice Session</h2>
+
+      {error && (
+        <div className="rounded-lg bg-red-500/10 border border-red-500/20 px-3 py-2 text-sm text-red-400">
+          {error}
+        </div>
+      )}
 
       <div className="grid gap-4 sm:grid-cols-2">
         <div>
