@@ -2,6 +2,8 @@ import { createClient } from "@/lib/supabase/server";
 import { redirect, notFound } from "next/navigation";
 import AppShell from "@/components/AppShell";
 import Link from "next/link";
+import { TAXONOMY_DIMENSIONS } from "@/types/taxonomy";
+import type { ArtistTaxonomy } from "@/types/taxonomy";
 
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
   return (
@@ -20,6 +22,24 @@ function Field({ label, value }: { label: string; value: string | null | undefin
     <div>
       <dt className="text-xs font-medium text-gray-500">{label}</dt>
       <dd className="mt-1 whitespace-pre-wrap text-sm text-gray-200">{value}</dd>
+    </div>
+  );
+}
+
+function TaxonomyBar({ rating }: { rating: number }) {
+  return (
+    <div className="flex items-center gap-1.5">
+      <div className="flex gap-0.5">
+        {[1, 2, 3, 4, 5].map((level) => (
+          <div
+            key={level}
+            className={`h-2.5 w-4 rounded-sm ${
+              rating >= level ? "bg-brand-500" : "bg-gray-800"
+            }`}
+          />
+        ))}
+      </div>
+      <span className="text-xs font-medium text-gray-400">{rating}/5</span>
     </div>
   );
 }
@@ -45,6 +65,8 @@ export default async function ArtistDetailPage({
 
   if (!artist) notFound();
 
+  const taxonomy = artist.taxonomy as ArtistTaxonomy | null;
+
   return (
     <AppShell>
       <div className="space-y-6">
@@ -56,6 +78,9 @@ export default async function ArtistDetailPage({
           <div className="mt-3 flex items-start justify-between gap-4">
             <div>
               <h1 className="text-2xl font-bold text-white">{artist.name}</h1>
+              {artist.summary && (
+                <p className="mt-1 text-sm text-gray-400 italic">{artist.summary}</p>
+              )}
               {artist.genre_tags && artist.genre_tags.length > 0 && (
                 <div className="mt-2 flex flex-wrap gap-1.5">
                   {artist.genre_tags.map((tag: string) => (
@@ -74,6 +99,29 @@ export default async function ArtistDetailPage({
             </Link>
           </div>
         </div>
+
+        {/* Sonic Taxonomy */}
+        {taxonomy && (
+          <Section title="Sonic Taxonomy">
+            <div className="space-y-3">
+              {TAXONOMY_DIMENSIONS.map((dim) => {
+                const dimData = taxonomy[dim.key];
+                if (!dimData) return null;
+                return (
+                  <div key={dim.key}>
+                    <div className="flex items-center justify-between">
+                      <span className="text-xs font-medium text-gray-300">{dim.label}</span>
+                      <TaxonomyBar rating={dimData.rating} />
+                    </div>
+                    {dimData.notes && (
+                      <p className="mt-0.5 text-xs text-gray-500">{dimData.notes}</p>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+          </Section>
+        )}
 
         {/* Identity */}
         {(artist.signature_sounds || artist.key_tracks || artist.reference_artists) && (

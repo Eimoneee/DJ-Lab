@@ -5,6 +5,8 @@ import { useRouter } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
 import Link from "next/link";
 import type { Database } from "@/types/database";
+import type { ArtistTaxonomy, TaxonomyDimension } from "@/types/taxonomy";
+import { TAXONOMY_DIMENSIONS } from "@/types/taxonomy";
 
 type ArtistSoundMap = Database["public"]["Tables"]["artist_sound_maps"]["Row"];
 
@@ -30,7 +32,35 @@ export default function ArtistForm({ userId, existing }: ArtistFormProps) {
     energy_flow: existing?.energy_flow ?? "",
     sample_palette: existing?.sample_palette ?? "",
     reference_artists: existing?.reference_artists ?? "",
+    summary: existing?.summary ?? "",
   });
+
+  const existingTax = existing?.taxonomy as ArtistTaxonomy | null;
+  const defaultDim: TaxonomyDimension = { rating: 3, notes: "" };
+  const [taxonomy, setTaxonomy] = useState<ArtistTaxonomy>({
+    groove: existingTax?.groove ?? { ...defaultDim },
+    percussion_density: existingTax?.percussion_density ?? { ...defaultDim },
+    low_end: existingTax?.low_end ?? { ...defaultDim },
+    arrangement: existingTax?.arrangement ?? { ...defaultDim },
+    tension: existingTax?.tension ?? { ...defaultDim },
+    vocal_usage: existingTax?.vocal_usage ?? { ...defaultDim },
+    energy_profile: existingTax?.energy_profile ?? { ...defaultDim },
+  });
+  const [showTaxonomy, setShowTaxonomy] = useState(!!existingTax);
+
+  const setDimRating = (key: keyof ArtistTaxonomy, rating: number) => {
+    setTaxonomy((prev) => ({
+      ...prev,
+      [key]: { ...prev[key], rating },
+    }));
+  };
+
+  const setDimNotes = (key: keyof ArtistTaxonomy, notes: string) => {
+    setTaxonomy((prev) => ({
+      ...prev,
+      [key]: { ...prev[key], notes },
+    }));
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -54,6 +84,8 @@ export default function ArtistForm({ userId, existing }: ArtistFormProps) {
       energy_flow: form.energy_flow,
       sample_palette: form.sample_palette,
       reference_artists: form.reference_artists,
+      summary: form.summary,
+      taxonomy: showTaxonomy ? taxonomy : null,
     };
 
     if (existing) {
@@ -159,9 +191,78 @@ export default function ArtistForm({ userId, existing }: ArtistFormProps) {
               placeholder="Other artists with a similar sound or who influenced this artist..."
             />
           </div>
+          <div>
+            <label htmlFor="summary" className="label">
+              One-Line Summary
+            </label>
+            <input
+              id="summary"
+              value={form.summary}
+              onChange={(e) => set("summary", e.target.value)}
+              className="input"
+              placeholder="e.g. Dark, percussion-heavy tech house with hypnotic grooves"
+            />
+          </div>
         </div>
 
-        {/* Recurring Production Traits */}
+        {/* Sonic Taxonomy */}
+        <div className="card space-y-4">
+          <div className="flex items-center justify-between">
+            <h2 className="text-sm font-semibold uppercase tracking-wider text-gray-400">
+              Sonic Taxonomy
+            </h2>
+            <button
+              type="button"
+              onClick={() => setShowTaxonomy(!showTaxonomy)}
+              className="text-xs text-brand-400 hover:text-brand-300"
+            >
+              {showTaxonomy ? "Hide" : "Add taxonomy ratings"}
+            </button>
+          </div>
+          {showTaxonomy && (
+            <div className="space-y-4">
+              <p className="text-xs text-gray-500">
+                Rate each sonic dimension from 1–5. These ratings enable side-by-side artist comparison.
+              </p>
+              {TAXONOMY_DIMENSIONS.map((dim) => (
+                <div key={dim.key}>
+                  <label className="label">
+                    {dim.label}
+                    <span className="ml-2 font-normal text-gray-600">
+                      ({dim.low} → {dim.high})
+                    </span>
+                  </label>
+                  <div className="flex items-center gap-2 mb-2">
+                    <div className="flex gap-1">
+                      {[1, 2, 3, 4, 5].map((level) => (
+                        <button
+                          key={level}
+                          type="button"
+                          onClick={() => setDimRating(dim.key, level)}
+                          className={`h-8 w-8 rounded text-xs font-medium transition-colors ${
+                            taxonomy[dim.key].rating >= level
+                              ? "bg-brand-600 text-white"
+                              : "bg-gray-800 text-gray-500 hover:bg-gray-700"
+                          }`}
+                        >
+                          {level}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                  <textarea
+                    value={taxonomy[dim.key].notes}
+                    onChange={(e) => setDimNotes(dim.key, e.target.value)}
+                    className="input min-h-[60px]"
+                    placeholder={`Notes on ${dim.label.toLowerCase()}...`}
+                  />
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+
+        {/* Recurring Production Traits (detailed notes) */}
         <div className="card space-y-4">
           <h2 className="text-sm font-semibold uppercase tracking-wider text-gray-400">
             Recurring Production Traits

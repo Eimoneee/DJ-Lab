@@ -29,9 +29,14 @@ export default async function ArtistsPage() {
               Study the sounds and techniques of artists you admire
             </p>
           </div>
-          <Link href="/artists/new" className="btn-primary">
-            + New Artist
-          </Link>
+          <div className="flex gap-2">
+            <Link href="/artists/compare" className="btn-secondary">
+              Compare
+            </Link>
+            <Link href="/artists/new" className="btn-primary">
+              + New Artist
+            </Link>
+          </div>
         </div>
 
         {(artists ?? []).length === 0 ? (
