@@ -50,7 +50,7 @@ export default async function PracticePage() {
           </div>
           <div className="card text-center">
             <p className="text-2xl font-bold text-brand-400">
-              {Math.round(totalMinutes / 60)}
+              {(totalMinutes / 60).toFixed(1)}
             </p>
             <p className="mt-1 text-xs text-gray-400">Total Hours</p>
           </div>

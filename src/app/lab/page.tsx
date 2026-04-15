@@ -57,14 +57,14 @@ export default async function LabPage() {
                     </h3>
                     <p className="text-sm text-gray-400">{track.artist}</p>
                   </div>
-                  {track.energy_rating && (
+                  {track.energy_rating != null && (
                     <span className="shrink-0 rounded bg-brand-600/20 px-1.5 py-0.5 text-xs font-medium text-brand-400">
                       ⚡ {track.energy_rating}/10
                     </span>
                   )}
                 </div>
                 <div className="mt-2 flex flex-wrap gap-2">
-                  {track.bpm && (
+                  {track.bpm != null && (
                     <span className="rounded-full bg-gray-800 px-2 py-0.5 text-xs text-gray-400">
                       {track.bpm} BPM
                     </span>

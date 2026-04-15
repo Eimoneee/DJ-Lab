@@ -1,6 +1,7 @@
 import { createClient } from "@/lib/supabase/server";
 import { redirect, notFound } from "next/navigation";
 import AppShell from "@/components/AppShell";
+import ArrangementTimeline from "@/components/ArrangementTimeline";
 import Link from "next/link";
 
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
@@ -25,7 +26,7 @@ function Field({ label, value }: { label: string; value: string | null | undefin
 }
 
 function EnergyBar({ rating }: { rating: number | null }) {
-  if (!rating) return null;
+  if (rating == null) return null;
   return (
     <div className="flex items-center gap-2">
       <span className="text-xs text-gray-500">Energy</span>
@@ -83,7 +84,7 @@ export default async function TrackDetailPage({
             </Link>
           </div>
           <div className="mt-3 flex flex-wrap gap-2">
-            {track.bpm && (
+            {track.bpm != null && (
               <span className="rounded-full bg-gray-800 px-2.5 py-0.5 text-xs text-gray-300">
                 {track.bpm} BPM
               </span>
@@ -131,7 +132,17 @@ export default async function TrackDetailPage({
         {(track.arrangement_timeline || track.tension_release) && (
           <Section title="Arrangement & Structure">
             <div className="space-y-4">
-              <Field label="Arrangement Timeline (in bars)" value={track.arrangement_timeline} />
+              {track.arrangement_timeline && (
+                <div>
+                  <dt className="text-xs font-medium text-gray-500 mb-3">
+                    Arrangement Timeline
+                  </dt>
+                  <ArrangementTimeline
+                    text={track.arrangement_timeline}
+                    bpm={track.bpm}
+                  />
+                </div>
+              )}
               <Field label="Tension / Release Notes" value={track.tension_release} />
             </div>
           </Section>
