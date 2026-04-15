@@ -12,6 +12,15 @@ export default async function DashboardPage() {
 
   if (!user) redirect("/login");
 
+  // Compute start of current week (Monday 00:00 UTC)
+  const now = new Date();
+  const day = now.getUTCDay(); // 0=Sun, 1=Mon, ...
+  const diffToMonday = day === 0 ? 6 : day - 1;
+  const startOfWeek = new Date(now);
+  startOfWeek.setUTCDate(now.getUTCDate() - diffToMonday);
+  startOfWeek.setUTCHours(0, 0, 0, 0);
+  const startOfWeekStr = startOfWeek.toISOString().split("T")[0];
+
   // Fetch all data in parallel
   const [modulesRes, lessonsRes, progressRes, practiceRes, tracksRes] =
     await Promise.all([
@@ -29,8 +38,8 @@ export default async function DashboardPage() {
         .from("practice_logs")
         .select("id, duration_minutes, date")
         .eq("user_id", user.id)
-        .order("date", { ascending: false })
-        .limit(7),
+        .gte("date", startOfWeekStr)
+        .order("date", { ascending: false }),
       supabase
         .from("track_analyses")
         .select("id")
