@@ -1,0 +1,74 @@
+name: Bug Report
+description: Report something that isn't working correctly
+title: "[Bug] "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Something broken? Describe what happened and how to reproduce it.
+
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: Describe the bug. What did you see?
+      placeholder: "I clicked 'Mark as Complete' on a lesson but the progress bar didn't update."
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: What should have happened?
+      description: What were you expecting to see instead?
+      placeholder: "The progress bar should have increased and the lesson should show as complete."
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      description: How can someone else trigger this bug?
+      placeholder: |
+        1. Go to Curriculum → Phase 1 → Counting Bars
+        2. Click "Mark as Complete"
+        3. Go back to the Dashboard
+        4. Progress bar still shows 0%
+    validations:
+      required: true
+
+  - type: dropdown
+    id: area
+    attributes:
+      label: Which area of the app?
+      options:
+        - Dashboard
+        - Curriculum
+        - Practice Log
+        - Reverse-Engineering Lab
+        - Artist Sound Maps / Taxonomy
+        - Login / Auth
+        - Other
+    validations:
+      required: true
+
+  - type: dropdown
+    id: device
+    attributes:
+      label: Device
+      options:
+        - Desktop browser
+        - Mobile browser
+        - Both
+    validations:
+      required: false
+
+  - type: textarea
+    id: extra
+    attributes:
+      label: Anything else?
+      description: Screenshots, error messages from the browser console, or any other details.
+    validations:
+      required: false

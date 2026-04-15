@@ -7,7 +7,12 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "test": "jest --passWithNoTests"
+    "test": "jest --passWithNoTests",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
+    "typecheck": "tsc --noEmit",
+    "validate": "npm run lint && npm run typecheck && npm test",
+    "seed:sql": "npx ts-node --compiler-options '{\"module\":\"commonjs\"}' src/data/seed.ts > supabase/seed.sql"
   },
   "dependencies": {
     "@supabase/ssr": "^0.5.2",
