@@ -164,7 +164,8 @@ DJ-Lab/
 | **Contributing Guide** | [`CONTRIBUTING.md`](https://github.com/Eimoneee/DJ-Lab/blob/main/CONTRIBUTING.md) | How to make changes (add lessons, edit pages, change styles) | Step-by-step instructions for a solo non-technical owner. |
 | **Changelog** | [`CHANGELOG.md`](https://github.com/Eimoneee/DJ-Lab/blob/main/CHANGELOG.md) | Version history (what changed and when) | Track what was added or fixed over time. |
 | **Final Handoff** | [`docs/final-handoff.md`](https://github.com/Eimoneee/DJ-Lab/blob/main/docs/final-handoff.md) | Complete project handoff for non-technical owner | The "if I disappear tomorrow" guide — how to run, deploy, edit, and maintain the project solo. |
-| **Architecture / Design Docs** | **MISSING** | Diagrams showing how data flows between components | Would help a developer understand the system at a glance. Not critical for a solo owner, but useful if you hire someone. |
+| **Architecture Map** | [`docs/architecture-map.md`](https://github.com/Eimoneee/DJ-Lab/blob/main/docs/architecture-map.md) | Frontend/backend overview, auth flow, database ER diagram, content system, deployment architecture, all dependencies with rationale | A complete technical map of how the app is built — essential for any developer picking up the project. |
+| **Roadmap & Next Steps** | [`docs/roadmap-next-steps.md`](https://github.com/Eimoneee/DJ-Lab/blob/main/docs/roadmap-next-steps.md) | Prioritized list of improvements (must-fix, should-improve, nice-to-have) with difficulty estimates and ready-to-use Devin prompts | Your guide for continuing to improve DJ Lab in future sessions. |
 
 ---
 
@@ -218,7 +219,7 @@ These resources do not exist yet. Each one includes what it would be and why you
 | **Live deployment URL** | A Vercel URL like `dj-lab.vercel.app` | Without this, the app only runs on your local machine. Deploy to Vercel to use it from any device. | **High** |
 | **Vercel dashboard** | Admin panel at `vercel.com/dashboard` for managing the deployment | Where you'd check build status, set environment variables for production, and manage the domain. | **High** (created automatically when you deploy) |
 | **CI/CD pipeline** | A `.github/workflows/ci.yml` file that runs `npm run validate` on every push | Catches broken code automatically before it can be merged. Currently tests only run when you remember to run them locally. | **Medium** |
-| **Architecture / design docs** | A diagram showing how data flows between the browser, Next.js server, and Supabase | Helps a developer understand the system quickly. Not needed for a solo owner, but useful if you hire help. | **Low** |
+| ~~Architecture / design docs~~ | ~~Created~~ → [`docs/architecture-map.md`](https://github.com/Eimoneee/DJ-Lab/blob/main/docs/architecture-map.md) | Now available — full technical architecture with diagrams. | **Done** |
 | **Backup strategy** | A scheduled export of Supabase data | If Supabase goes down or you accidentally delete data, you'd have a backup. Supabase has point-in-time recovery on paid plans. | **Low** |
 | **Custom domain** | A domain like `djlab.yourdomain.com` | Makes the URL professional and easy to remember. Configure in Vercel after deploying. | **Low** |
 | **Error monitoring** | A service like Sentry that reports runtime errors | Tells you when something breaks in production, even if no one reports it. | **Low** |
