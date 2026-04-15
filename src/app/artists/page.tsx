@@ -53,7 +53,7 @@ export default async function ArtistsPage() {
                 <h3 className="font-medium text-white group-hover:text-brand-400">
                   {artist.name}
                 </h3>
-                {artist.genre_tags.length > 0 && (
+                {artist.genre_tags && artist.genre_tags.length > 0 && (
                   <div className="mt-2 flex flex-wrap gap-1">
                     {artist.genre_tags.map((tag: string) => (
                       <span
@@ -69,6 +69,23 @@ export default async function ArtistsPage() {
                   <p className="mt-2 text-sm text-gray-400 line-clamp-2">
                     {artist.signature_sounds}
                   </p>
+                )}
+                {/* Show trait summary badges */}
+                {(artist.drum_patterns || artist.bass_style || artist.mixing_traits || artist.fx_techniques) && (
+                  <div className="mt-2 flex flex-wrap gap-1">
+                    {artist.drum_patterns && (
+                      <span className="rounded-full bg-gray-800 px-2 py-0.5 text-xs text-gray-400">Drums</span>
+                    )}
+                    {artist.bass_style && (
+                      <span className="rounded-full bg-gray-800 px-2 py-0.5 text-xs text-gray-400">Bass</span>
+                    )}
+                    {artist.mixing_traits && (
+                      <span className="rounded-full bg-gray-800 px-2 py-0.5 text-xs text-gray-400">Mix</span>
+                    )}
+                    {artist.fx_techniques && (
+                      <span className="rounded-full bg-gray-800 px-2 py-0.5 text-xs text-gray-400">FX</span>
+                    )}
+                  </div>
                 )}
               </Link>
             ))}
