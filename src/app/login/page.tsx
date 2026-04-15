@@ -19,35 +19,43 @@ export default function LoginPage() {
     setError(null);
     setMessage(null);
 
-    const supabase = createClient();
+    try {
+      const supabase = createClient();
 
-    if (isSignUp) {
-      const { error } = await supabase.auth.signUp({
-        email,
-        password,
-        options: {
-          emailRedirectTo: `${window.location.origin}/auth/callback`,
-        },
-      });
-      if (error) {
-        setError(error.message);
+      if (isSignUp) {
+        const { data, error } = await supabase.auth.signUp({
+          email,
+          password,
+          options: {
+            emailRedirectTo: `${window.location.origin}/auth/callback`,
+          },
+        });
+        if (error) {
+          setError(error.message);
+        } else if (data.session) {
+          // User was auto-confirmed — redirect to dashboard
+          router.push("/dashboard");
+        } else {
+          setMessage("Check your email for a confirmation link!");
+        }
       } else {
-        setMessage("Check your email for a confirmation link!");
+        const { error } = await supabase.auth.signInWithPassword({
+          email,
+          password,
+        });
+        if (error) {
+          setError(error.message);
+        } else {
+          router.push("/dashboard");
+        }
       }
-    } else {
-      const { error } = await supabase.auth.signInWithPassword({
-        email,
-        password,
-      });
-      if (error) {
-        setError(error.message);
-      } else {
-        router.push("/dashboard");
-        router.refresh();
-      }
+    } catch (err) {
+      setError(
+        err instanceof Error ? err.message : "Something went wrong. Please try again."
+      );
+    } finally {
+      setLoading(false);
     }
-
-    setLoading(false);
   };
 
   return (
