@@ -40,7 +40,7 @@ create or replace trigger on_auth_user_created
 
 -- Modules
 create table if not exists public.modules (
-  id uuid primary key default gen_random_uuid(),
+  id text primary key,
   title text not null,
   description text not null default '',
   category text not null default 'fundamentals',
@@ -58,8 +58,8 @@ create policy "Modules are viewable by authenticated users"
 
 -- Lessons
 create table if not exists public.lessons (
-  id uuid primary key default gen_random_uuid(),
-  module_id uuid not null references public.modules(id) on delete cascade,
+  id text primary key,
+  module_id text not null references public.modules(id) on delete cascade,
   title text not null,
   description text not null default '',
   content_md text not null default '',
@@ -76,8 +76,8 @@ create policy "Lessons are viewable by authenticated users"
 
 -- Exercises
 create table if not exists public.exercises (
-  id uuid primary key default gen_random_uuid(),
-  lesson_id uuid not null references public.lessons(id) on delete cascade,
+  id text primary key,
+  lesson_id text not null references public.lessons(id) on delete cascade,
   title text not null,
   description text not null default '',
   order_index integer not null default 0,
@@ -95,7 +95,7 @@ create policy "Exercises are viewable by authenticated users"
 create table if not exists public.user_lesson_progress (
   id uuid primary key default gen_random_uuid(),
   user_id uuid not null references auth.users(id) on delete cascade,
-  lesson_id uuid not null references public.lessons(id) on delete cascade,
+  lesson_id text not null references public.lessons(id) on delete cascade,
   completed boolean not null default false,
   completed_at timestamptz,
   created_at timestamptz default now() not null,
@@ -120,7 +120,7 @@ create policy "Users can update own lesson progress"
 create table if not exists public.user_exercise_progress (
   id uuid primary key default gen_random_uuid(),
   user_id uuid not null references auth.users(id) on delete cascade,
-  exercise_id uuid not null references public.exercises(id) on delete cascade,
+  exercise_id text not null references public.exercises(id) on delete cascade,
   completed boolean not null default false,
   completed_at timestamptz,
   created_at timestamptz default now() not null,
