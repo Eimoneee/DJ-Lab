@@ -50,10 +50,19 @@ export default async function LabPage() {
                 href={`/lab/${track.id}`}
                 className="card group transition-colors hover:border-brand-500/50"
               >
-                <h3 className="font-medium text-white group-hover:text-brand-400">
-                  {track.track_name}
-                </h3>
-                <p className="text-sm text-gray-400">{track.artist}</p>
+                <div className="flex items-start justify-between gap-2">
+                  <div>
+                    <h3 className="font-medium text-white group-hover:text-brand-400">
+                      {track.track_name}
+                    </h3>
+                    <p className="text-sm text-gray-400">{track.artist}</p>
+                  </div>
+                  {track.energy_rating && (
+                    <span className="shrink-0 rounded bg-brand-600/20 px-1.5 py-0.5 text-xs font-medium text-brand-400">
+                      ⚡ {track.energy_rating}/10
+                    </span>
+                  )}
+                </div>
                 <div className="mt-2 flex flex-wrap gap-2">
                   {track.bpm && (
                     <span className="rounded-full bg-gray-800 px-2 py-0.5 text-xs text-gray-400">
@@ -68,6 +77,11 @@ export default async function LabPage() {
                   {track.genre && (
                     <span className="rounded-full bg-brand-600/20 px-2 py-0.5 text-xs text-brand-400">
                       {track.genre}
+                    </span>
+                  )}
+                  {track.subgenre && (
+                    <span className="rounded-full bg-brand-600/10 px-2 py-0.5 text-xs text-brand-300">
+                      {track.subgenre}
                     </span>
                   )}
                 </div>
