@@ -1,0 +1,75 @@
+name: Curriculum Change
+description: Request a change to the curriculum — add, edit, reorder, or remove lessons
+title: "[Curriculum] "
+labels: ["curriculum"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this template to request changes to the DJ Lab curriculum (lessons, exercises, or modules).
+
+  - type: dropdown
+    id: change-type
+    attributes:
+      label: Type of change
+      options:
+        - Add a new lesson
+        - Edit an existing lesson
+        - Reorder lessons
+        - Remove a lesson
+        - Add a new exercise to a lesson
+        - Edit an exercise
+        - Other
+    validations:
+      required: true
+
+  - type: dropdown
+    id: phase
+    attributes:
+      label: Which phase?
+      options:
+        - "Phase 1: DJ Fundamentals"
+        - "Phase 2: House & Tech House Mixing"
+        - "Phase 3: Production Basics"
+        - "Phase 4: Reverse Engineering"
+        - New phase
+        - Not sure
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Describe the change
+      description: What should be added, changed, or removed? Be as specific as you can.
+      placeholder: |
+        Add a lesson on "Using Effects During Transitions" to Phase 2.
+        
+        It should cover:
+        - Filter sweeps (high-pass and low-pass)
+        - Reverb throws on vocals
+        - Echo/delay for smooth transitions
+        
+        Exercise: Practice 10 transitions using at least 2 different effects.
+    validations:
+      required: true
+
+  - type: textarea
+    id: reason
+    attributes:
+      label: Why?
+      description: Why is this change needed? What gap does it fill?
+      placeholder: "I keep seeing these techniques in DJ sets but the curriculum doesn't cover them yet."
+    validations:
+      required: false
+
+  - type: textarea
+    id: reference
+    attributes:
+      label: Reference material
+      description: Any tracks, videos, articles, or other resources that relate to this change.
+      placeholder: |
+        - Watch this transition at 23:00: [YouTube link]
+        - This technique is used in "Track Name" by Artist
+    validations:
+      required: false

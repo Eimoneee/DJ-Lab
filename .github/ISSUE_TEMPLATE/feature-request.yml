@@ -1,0 +1,51 @@
+name: Feature Request
+description: Suggest a new feature or improvement for DJ Lab
+title: "[Feature] "
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for suggesting a feature! Describe what you'd like and why it would be useful.
+
+  - type: textarea
+    id: description
+    attributes:
+      label: What do you want?
+      description: Describe the feature in plain language. What should it do?
+      placeholder: "I want a page that shows my practice stats over time as a chart."
+    validations:
+      required: true
+
+  - type: textarea
+    id: why
+    attributes:
+      label: Why is this useful?
+      description: How would this help your learning or workflow?
+      placeholder: "It would help me see if I'm practicing consistently and track improvement."
+    validations:
+      required: false
+
+  - type: dropdown
+    id: area
+    attributes:
+      label: Which area of the app?
+      options:
+        - Dashboard
+        - Curriculum
+        - Practice Log
+        - Reverse-Engineering Lab
+        - Artist Sound Maps / Taxonomy
+        - New section
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: details
+    attributes:
+      label: Any extra details?
+      description: Mockups, examples, reference links, or anything else that helps explain what you want.
+      placeholder: "Similar to the GitHub contribution graph but for practice sessions."
+    validations:
+      required: false

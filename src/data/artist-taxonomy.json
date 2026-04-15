@@ -1,0 +1,322 @@
+{
+  "schema_version": "1.0",
+  "dimensions": {
+    "groove": {
+      "label": "Groove",
+      "description": "Swing, shuffle, and rhythmic feel",
+      "scale": "1 = straight/rigid, 5 = heavy swing/shuffle"
+    },
+    "percussion_density": {
+      "label": "Percussion Density",
+      "description": "How layered and busy the percussion is",
+      "scale": "1 = minimal/sparse, 5 = dense/complex"
+    },
+    "low_end": {
+      "label": "Low-End Behavior",
+      "description": "Sub bass weight, kick character, and low-end movement",
+      "scale": "1 = light/thin, 5 = heavy/dominant"
+    },
+    "arrangement": {
+      "label": "Arrangement Style",
+      "description": "Song structure, build patterns, and progression",
+      "scale": "1 = minimal/repetitive, 5 = complex/dynamic"
+    },
+    "tension": {
+      "label": "Tension Style",
+      "description": "How tension and release are created",
+      "scale": "1 = subtle/gradual, 5 = dramatic/intense"
+    },
+    "vocal_usage": {
+      "label": "Vocal Usage",
+      "description": "How vocals are used in productions",
+      "scale": "1 = none/rare, 5 = prominent/central"
+    },
+    "energy_profile": {
+      "label": "Energy Profile",
+      "description": "Overall energy and intensity level",
+      "scale": "1 = deep/hypnotic, 5 = peak-time/high-energy"
+    }
+  },
+  "artists": [
+    {
+      "name": "ChaseWest",
+      "genre_tags": ["Tech House", "Bass House"],
+      "taxonomy": {
+        "groove": { "rating": 4, "notes": "Swung hi-hats with a bouncy, body-moving groove. Keeps things rolling without being overly complex." },
+        "percussion_density": { "rating": 3, "notes": "Clean and punchy rather than busy. Relies on well-placed claps and shakers to drive the rhythm." },
+        "low_end": { "rating": 4, "notes": "Strong sub-bass presence with a rounded, punchy kick. Low-end is felt more than heard." },
+        "arrangement": { "rating": 3, "notes": "Straightforward DJ-friendly structures. Clear intros, builds, and drops. Breakdowns are short and functional." },
+        "tension": { "rating": 4, "notes": "Uses risers and filter sweeps for build-ups. Drops hit hard with bass re-entry." },
+        "vocal_usage": { "rating": 4, "notes": "Frequently uses chopped vocal hooks and spoken-word samples. Vocals are central to the identity of tracks." },
+        "energy_profile": { "rating": 4, "notes": "Peak-time energy with a fun, accessible vibe. Designed for big-room moments." }
+      },
+      "summary": "Accessible peak-time tech house with vocal hooks, bouncy grooves, and strong low-end."
+    },
+    {
+      "name": "Michael Bibi",
+      "genre_tags": ["Tech House", "Dark Tech House"],
+      "taxonomy": {
+        "groove": { "rating": 4, "notes": "Heavy shuffle and swing. Grooves are hypnotic and relentless, built around off-beat percussion." },
+        "percussion_density": { "rating": 4, "notes": "Layered percussion with congas, bongos, and shakers creating a busy but controlled rhythmic bed." },
+        "low_end": { "rating": 4, "notes": "Dark, driving kick with deep sub presence. Low-end is tight and punchy, tailored for big systems." },
+        "arrangement": { "rating": 3, "notes": "Loop-driven structures with subtle element additions. Builds are gradual rather than dramatic." },
+        "tension": { "rating": 3, "notes": "Tension comes from percussion layering and filter work rather than big risers. Subtle but effective." },
+        "vocal_usage": { "rating": 3, "notes": "Uses vocal chops and spoken-word snippets as rhythmic elements rather than melodic hooks." },
+        "energy_profile": { "rating": 4, "notes": "Dark, driving energy. Peak-time but with an underground edge. Works in both clubs and festivals." }
+      },
+      "summary": "Dark, percussion-heavy tech house with hypnotic grooves and underground energy."
+    },
+    {
+      "name": "PAWSA",
+      "genre_tags": ["Tech House", "Groovy House"],
+      "taxonomy": {
+        "groove": { "rating": 5, "notes": "Master of groove. Swung, funky rhythms that lock in and don't let go. Heavily influenced by classic house." },
+        "percussion_density": { "rating": 3, "notes": "Selective but impactful percussion. Every element has purpose. Not cluttered." },
+        "low_end": { "rating": 3, "notes": "Warm, round bass that moves and grooves. Not overly heavy — serves the rhythm rather than dominating." },
+        "arrangement": { "rating": 3, "notes": "Smooth, DJ-tool-friendly structures. Gradual layering with satisfying payoffs." },
+        "tension": { "rating": 2, "notes": "Tension is subtle. Relies on groove hypnosis rather than dramatic builds or drops." },
+        "vocal_usage": { "rating": 4, "notes": "Often uses soulful vocal samples and chops. Vocals sit in the groove and add character." },
+        "energy_profile": { "rating": 3, "notes": "Mid-energy groover. Perfect for warming up a room or maintaining a locked-in dance floor." }
+      },
+      "summary": "Groove-first tech house with funk influences, soulful vocals, and understated builds."
+    },
+    {
+      "name": "Void",
+      "genre_tags": ["Tech House", "Minimal Tech"],
+      "taxonomy": {
+        "groove": { "rating": 3, "notes": "Tight, driving groove with less swing and more forward momentum. Mechanical but musical." },
+        "percussion_density": { "rating": 4, "notes": "Layered rhythmic textures with metallic and synthetic percussion. Detailed and intricate." },
+        "low_end": { "rating": 4, "notes": "Heavy, processed kick with sub-bass rumble. Low-end is dark and industrial-leaning." },
+        "arrangement": { "rating": 3, "notes": "Hypnotic loop-based structures. Changes are subtle — elements fade in and out rather than hard-cutting." },
+        "tension": { "rating": 3, "notes": "Tension through texture and atmosphere. Uses reverb tails, noise sweeps, and subtle modulation." },
+        "vocal_usage": { "rating": 2, "notes": "Minimal vocal usage. Occasional distorted or processed vocal textures rather than clear vocals." },
+        "energy_profile": { "rating": 4, "notes": "Dark, intense energy for late-night sets. Relentless without being abrasive." }
+      },
+      "summary": "Dark, minimal tech house with intricate percussion, heavy low-end, and atmospheric tension."
+    },
+    {
+      "name": "Zulan",
+      "genre_tags": ["Tech House", "Deep Tech"],
+      "taxonomy": {
+        "groove": { "rating": 4, "notes": "Deep, rolling groove with subtle swing. Rhythms are warm and inviting, pulling listeners in." },
+        "percussion_density": { "rating": 3, "notes": "Balanced percussion. Clean hats and shakers with organic-sounding elements." },
+        "low_end": { "rating": 3, "notes": "Warm sub-bass with smooth movement. Low-end supports the groove without overwhelming it." },
+        "arrangement": { "rating": 3, "notes": "Well-structured with clear progression. Builds feel natural and unforced." },
+        "tension": { "rating": 2, "notes": "Gentle tension curves. Relies on harmonic movement and filter work rather than dramatic builds." },
+        "vocal_usage": { "rating": 3, "notes": "Uses vocal samples tastefully — chopped phrases and atmospheric vocal textures." },
+        "energy_profile": { "rating": 3, "notes": "Mid-energy deep groover. Suited for opening sets and intimate club moments." }
+      },
+      "summary": "Deep, warm tech house with rolling grooves, tasteful vocals, and smooth energy curves."
+    },
+    {
+      "name": "Prospa",
+      "genre_tags": ["Rave", "Melodic House", "Tech House"],
+      "taxonomy": {
+        "groove": { "rating": 3, "notes": "Energetic and forward-driving. Less swung, more four-to-the-floor with rave energy." },
+        "percussion_density": { "rating": 3, "notes": "Clean and punchy percussion. Not overly layered — lets synths and melodies take center stage." },
+        "low_end": { "rating": 3, "notes": "Solid kick foundation with controlled sub. Low-end is functional and supportive." },
+        "arrangement": { "rating": 4, "notes": "Dynamic arrangements with euphoric builds, breakdowns, and drops. More song-like than loop-based." },
+        "tension": { "rating": 5, "notes": "Big, euphoric builds with classic rave tension. Breakdowns strip back to melodic pads before explosive drops." },
+        "vocal_usage": { "rating": 4, "notes": "Prominent vocal hooks and pads. Often uses pitched vocals and vocal chords for euphoria." },
+        "energy_profile": { "rating": 5, "notes": "High-energy, euphoric, festival-ready. Crossover appeal between house and rave." }
+      },
+      "summary": "Euphoric rave-house crossover with big melodic builds, vocal hooks, and festival energy."
+    },
+    {
+      "name": "Luke Dean",
+      "genre_tags": ["Tech House", "Groovy Tech"],
+      "taxonomy": {
+        "groove": { "rating": 4, "notes": "Funky, bouncy grooves with a classic house feel. Shuffle in the hats drives the rhythm." },
+        "percussion_density": { "rating": 3, "notes": "Well-curated percussion. Clean layers that complement rather than overwhelm." },
+        "low_end": { "rating": 3, "notes": "Tight kick with a musical bassline. Bass often carries melodic content." },
+        "arrangement": { "rating": 3, "notes": "DJ-friendly structures with smooth transitions between sections. Functional but musical." },
+        "tension": { "rating": 3, "notes": "Moderate tension through filter sweeps and percussion builds. Satisfying without being over-the-top." },
+        "vocal_usage": { "rating": 3, "notes": "Uses vocal cuts and samples as rhythmic hooks. Vocals add flavor without dominating." },
+        "energy_profile": { "rating": 3, "notes": "Versatile mid-energy. Works across warm-up and peak-time depending on the track." }
+      },
+      "summary": "Funky, well-crafted tech house with bouncy grooves and versatile energy."
+    },
+    {
+      "name": "OMAR+",
+      "genre_tags": ["Tech House", "Groovy Minimal"],
+      "taxonomy": {
+        "groove": { "rating": 5, "notes": "Deeply swung and hypnotic. Grooves are minimalist but irresistible — less is more approach." },
+        "percussion_density": { "rating": 2, "notes": "Sparse, intentional percussion. Every hit has maximum impact because of space around it." },
+        "low_end": { "rating": 3, "notes": "Warm, round bass that grooves rather than pounds. Musical low-end movement." },
+        "arrangement": { "rating": 2, "notes": "Minimal loop-based structures. Subtle element additions create movement over time." },
+        "tension": { "rating": 2, "notes": "Almost no overt tension. The groove itself is the hook — hypnotic repetition creates its own release." },
+        "vocal_usage": { "rating": 3, "notes": "Short, chopped vocal phrases used as rhythmic elements. Soulful and minimal." },
+        "energy_profile": { "rating": 2, "notes": "Deep, hypnotic energy. Best for late-night, intimate dance floors where groove takes priority." }
+      },
+      "summary": "Minimalist, groove-heavy tech house with hypnotic repetition and deep energy."
+    },
+    {
+      "name": "Bontan",
+      "genre_tags": ["Tech House", "Funky House"],
+      "taxonomy": {
+        "groove": { "rating": 4, "notes": "Funky and dance-floor-focused. Strong shuffle with a feel-good rhythmic base." },
+        "percussion_density": { "rating": 3, "notes": "Clean and bouncy percussion. Focused on groove rather than complexity." },
+        "low_end": { "rating": 3, "notes": "Rounded, musical basslines. Low-end has character and movement." },
+        "arrangement": { "rating": 3, "notes": "Well-structured with satisfying builds and payoffs. DJ-tool friendly." },
+        "tension": { "rating": 3, "notes": "Moderate tension using percussion drops and filter sweeps. Builds feel natural." },
+        "vocal_usage": { "rating": 4, "notes": "Vocal-forward productions. Often uses full vocal hooks and soulful samples." },
+        "energy_profile": { "rating": 3, "notes": "Feel-good, mid-to-high energy. Great for setting a fun, upbeat mood." }
+      },
+      "summary": "Feel-good, vocal-driven tech house with funky grooves and accessible energy."
+    },
+    {
+      "name": "Adam Ten",
+      "genre_tags": ["Melodic House", "Deep Tech", "Afro House"],
+      "taxonomy": {
+        "groove": { "rating": 4, "notes": "Deep, rolling grooves with afro-influenced rhythmic patterns. Organic and earthy feel." },
+        "percussion_density": { "rating": 4, "notes": "Rich, layered organic percussion. Congas, shakers, and tribal elements create depth." },
+        "low_end": { "rating": 3, "notes": "Warm, deep bass that evolves slowly. Not aggressive — supportive and musical." },
+        "arrangement": { "rating": 4, "notes": "Journey-like arrangements with long builds and evolving textures. More epic than loop-based." },
+        "tension": { "rating": 3, "notes": "Tension through layering and harmonic progression. Builds are patient and rewarding." },
+        "vocal_usage": { "rating": 3, "notes": "Ethnic vocal samples and chants. Vocals add atmosphere and cultural texture." },
+        "energy_profile": { "rating": 3, "notes": "Mid-energy with emotional depth. Suited for sunset sets and melodic journey moments." }
+      },
+      "summary": "Melodic, percussion-rich deep house with afro influences and journey-like arrangements."
+    },
+    {
+      "name": "Mita Gami",
+      "genre_tags": ["Tech House", "Vocal Tech"],
+      "taxonomy": {
+        "groove": { "rating": 4, "notes": "Tight, bouncy grooves with a modern tech house shuffle. Dance-floor-focused rhythms." },
+        "percussion_density": { "rating": 3, "notes": "Clean, punchy percussion that supports the groove. Well-mixed and defined." },
+        "low_end": { "rating": 3, "notes": "Solid kick-bass relationship. Low-end is functional and clean." },
+        "arrangement": { "rating": 3, "notes": "Effective, DJ-friendly structures with clear energy arcs." },
+        "tension": { "rating": 3, "notes": "Standard build-and-drop tension. Uses risers and percussion lifts effectively." },
+        "vocal_usage": { "rating": 4, "notes": "Strong vocal presence with catchy hooks and chopped phrases. Vocals carry the track identity." },
+        "energy_profile": { "rating": 4, "notes": "Upbeat, accessible energy. Works well in both clubs and festivals." }
+      },
+      "summary": "Vocal-driven tech house with catchy hooks, clean production, and upbeat energy."
+    },
+    {
+      "name": "Odd Mob",
+      "genre_tags": ["Bass House", "Tech House", "Festival"],
+      "taxonomy": {
+        "groove": { "rating": 3, "notes": "Driving and energetic. Less swing, more punch. Grooves are designed for maximum impact." },
+        "percussion_density": { "rating": 3, "notes": "Punchy and direct. Percussion serves the drops rather than creating intricate patterns." },
+        "low_end": { "rating": 5, "notes": "Massive bass presence. Heavy, distorted bass drops are a signature element. Sub-shaking low-end." },
+        "arrangement": { "rating": 4, "notes": "Dynamic song structures with big breakdowns and heavy drops. More bass-music-influenced arrangements." },
+        "tension": { "rating": 5, "notes": "Extreme tension-release cycles. Big builds into heavy bass drops. Designed for crowd reaction." },
+        "vocal_usage": { "rating": 3, "notes": "Uses vocal samples and chops in builds. Vocals serve the energy arc rather than being melodic hooks." },
+        "energy_profile": { "rating": 5, "notes": "Maximum energy. Festival-ready, peak-time, crowd-moving productions." }
+      },
+      "summary": "High-energy bass house with massive drops, extreme tension-release, and festival-ready productions."
+    },
+    {
+      "name": "Rafael",
+      "genre_tags": ["Tech House", "Groovy Tech"],
+      "taxonomy": {
+        "groove": { "rating": 4, "notes": "Smooth, rolling groove with a Latin-influenced bounce. Rhythms are warm and inviting." },
+        "percussion_density": { "rating": 3, "notes": "Tasteful percussion with organic textures. Congas and rim shots add flavor." },
+        "low_end": { "rating": 3, "notes": "Musical basslines with groove and movement. Bass is a lead instrument." },
+        "arrangement": { "rating": 3, "notes": "Smooth progressions with well-timed element introductions. DJ-friendly." },
+        "tension": { "rating": 2, "notes": "Subtle tension through percussion builds and bassline modulation. No dramatic drops." },
+        "vocal_usage": { "rating": 3, "notes": "Uses chopped vocal phrases and snippets as rhythmic tools. Adds character without dominating." },
+        "energy_profile": { "rating": 3, "notes": "Mid-energy groover. Perfect for dance floor warm-ups and maintaining flow." }
+      },
+      "summary": "Groovy, Latin-influenced tech house with musical basslines and smooth, flowing energy."
+    },
+    {
+      "name": "Brunello",
+      "genre_tags": ["Deep House", "Melodic Tech", "Organic House"],
+      "taxonomy": {
+        "groove": { "rating": 3, "notes": "Gentle, rolling groove. More hypnotic than bouncy. Organic and natural-feeling rhythms." },
+        "percussion_density": { "rating": 3, "notes": "Organic percussion with natural timbres. Wooden and earthy sounds create warmth." },
+        "low_end": { "rating": 3, "notes": "Deep, warm bass that breathes. Low-end is supportive and unobtrusive." },
+        "arrangement": { "rating": 4, "notes": "Evolving, journey-style arrangements. Tracks develop slowly with patience and intention." },
+        "tension": { "rating": 2, "notes": "Minimal tension. Builds are gradual and atmospheric. No hard drops." },
+        "vocal_usage": { "rating": 2, "notes": "Sparse vocal use. Occasional ethereal vocal textures or distant chants." },
+        "energy_profile": { "rating": 2, "notes": "Low-energy, deep and meditative. Best for opening sets and intimate listening moments." }
+      },
+      "summary": "Deep, organic house with patient arrangements, warm textures, and meditative energy."
+    },
+    {
+      "name": "Yamagucci",
+      "genre_tags": ["Tech House", "Bass Tech"],
+      "taxonomy": {
+        "groove": { "rating": 4, "notes": "Bouncy, high-energy groove with a modern tech house shuffle. Infectious and physical." },
+        "percussion_density": { "rating": 3, "notes": "Punchy percussion that complements heavy bass. Clean and impactful." },
+        "low_end": { "rating": 4, "notes": "Heavy, distorted bass elements. Low-end is aggressive and attention-grabbing." },
+        "arrangement": { "rating": 3, "notes": "Effective build-drop structures. Clear energy arcs designed for dance floor impact." },
+        "tension": { "rating": 4, "notes": "Strong tension-release with filtered builds and bass drops. Energy shifts are dramatic." },
+        "vocal_usage": { "rating": 3, "notes": "Vocal chops and samples used as hooks and rhythmic elements." },
+        "energy_profile": { "rating": 4, "notes": "High-energy, bass-forward tech house. Designed for peak-time moments." }
+      },
+      "summary": "Bass-heavy tech house with bouncy grooves, aggressive low-end, and peak-time energy."
+    },
+    {
+      "name": "Keinemusik",
+      "genre_tags": ["Melodic House", "Afro House", "Deep House"],
+      "taxonomy": {
+        "groove": { "rating": 5, "notes": "Deeply musical grooves blending afro, deep house, and electronic textures. Hypnotic and layered." },
+        "percussion_density": { "rating": 4, "notes": "Rich, organic percussion. Afro-influenced drums, shakers, and hand percussion create a full rhythmic tapestry." },
+        "low_end": { "rating": 3, "notes": "Warm, deep bass that flows. Not heavy-handed — supports the groove elegantly." },
+        "arrangement": { "rating": 5, "notes": "Sophisticated, journey-like arrangements. Tracks unfold over time with multiple movements and emotional arcs." },
+        "tension": { "rating": 3, "notes": "Tension through harmonic and textural evolution. Patient builds that reward attentive listening." },
+        "vocal_usage": { "rating": 4, "notes": "Prominent use of ethnic and soulful vocals. Vocals are integral to the emotional narrative." },
+        "energy_profile": { "rating": 3, "notes": "Mid-energy with emotional depth. Creates transcendent dance floor moments through musicality." }
+      },
+      "summary": "Musically sophisticated collective blending afro, deep, and melodic house with rich arrangements and emotional depth."
+    },
+    {
+      "name": "Giaggi",
+      "genre_tags": ["Tech House", "Minimal Tech"],
+      "taxonomy": {
+        "groove": { "rating": 4, "notes": "Tight, rolling groove with a minimal influence. Clean and hypnotic rhythmic patterns." },
+        "percussion_density": { "rating": 3, "notes": "Precise, well-placed percussion. Minimal approach — every hit counts." },
+        "low_end": { "rating": 3, "notes": "Clean, defined low-end. Kick and bass have clear separation and purpose." },
+        "arrangement": { "rating": 3, "notes": "Functional, loop-based structures with subtle development. DJ-tool oriented." },
+        "tension": { "rating": 2, "notes": "Understated tension. Relies on groove and subtle modulation rather than builds." },
+        "vocal_usage": { "rating": 2, "notes": "Minimal vocal use. Occasional short samples or processed vocal textures." },
+        "energy_profile": { "rating": 3, "notes": "Steady, consistent energy. Great for keeping a dance floor locked in." }
+      },
+      "summary": "Clean, minimal tech house with precise grooves and steady, hypnotic energy."
+    },
+    {
+      "name": "KinAhau",
+      "genre_tags": ["Organic House", "Afro Tech", "Melodic House"],
+      "taxonomy": {
+        "groove": { "rating": 4, "notes": "Tribal, organic grooves with world-music influences. Rhythms feel ancient and ceremonial." },
+        "percussion_density": { "rating": 4, "notes": "Dense organic percussion layers. Tribal drums, djembes, and hand percussion create a ritualistic feel." },
+        "low_end": { "rating": 3, "notes": "Warm, earthy bass. Low-end is deep but not heavy — complements the organic palette." },
+        "arrangement": { "rating": 4, "notes": "Evolving, ceremonial arrangements. Tracks build like rituals — slowly adding layers of energy." },
+        "tension": { "rating": 3, "notes": "Tension through percussion builds and vocal incantations. Builds feel spiritual." },
+        "vocal_usage": { "rating": 4, "notes": "Ethnic vocals, chants, and ceremonial singing. Vocals are a core element of the sound identity." },
+        "energy_profile": { "rating": 3, "notes": "Mid-energy with spiritual intensity. Creates trance-like dance floor states." }
+      },
+      "summary": "Tribal, organic house with ceremonial percussion, ethnic vocals, and spiritual energy."
+    },
+    {
+      "name": "Djibouti",
+      "genre_tags": ["Tech House", "Afro Tech"],
+      "taxonomy": {
+        "groove": { "rating": 4, "notes": "Afro-influenced groove with modern tech house production. Polyrhythmic elements create complexity." },
+        "percussion_density": { "rating": 4, "notes": "Rich percussion layers blending electronic and organic drums. Busy but musical." },
+        "low_end": { "rating": 3, "notes": "Solid, defined low-end that supports complex rhythmic patterns above." },
+        "arrangement": { "rating": 3, "notes": "Effective structures that balance loop-based hypnosis with build-and-release moments." },
+        "tension": { "rating": 3, "notes": "Tension through percussion layering and rhythmic intensity. Builds feel organic." },
+        "vocal_usage": { "rating": 3, "notes": "Vocal chants and afro-influenced vocal samples add cultural texture." },
+        "energy_profile": { "rating": 4, "notes": "Energetic and driving. Afro rhythms create a physical, body-moving experience." }
+      },
+      "summary": "Afro-tech house fusion with polyrhythmic percussion, cultural textures, and driving energy."
+    },
+    {
+      "name": "Alex Yav",
+      "genre_tags": ["Tech House", "Deep Tech"],
+      "taxonomy": {
+        "groove": { "rating": 4, "notes": "Smooth, deep groove with a warm shuffle. Rhythms are inviting and easy to lock into." },
+        "percussion_density": { "rating": 3, "notes": "Clean, well-mixed percussion. Balanced layers that support the groove." },
+        "low_end": { "rating": 3, "notes": "Warm, round bass with musical movement. Low-end has character without being heavy." },
+        "arrangement": { "rating": 3, "notes": "Well-structured, DJ-friendly arrangements. Clear progressions with satisfying payoffs." },
+        "tension": { "rating": 2, "notes": "Gentle tension through filter work and element addition. No dramatic builds." },
+        "vocal_usage": { "rating": 3, "notes": "Tasteful vocal samples and chops that complement the groove. Not overpowering." },
+        "energy_profile": { "rating": 3, "notes": "Mid-energy, versatile output. Smooth and controlled — good for various set positions." }
+      },
+      "summary": "Smooth, deep tech house with warm grooves, musical bass, and versatile energy."
+    }
+  ]
+}
