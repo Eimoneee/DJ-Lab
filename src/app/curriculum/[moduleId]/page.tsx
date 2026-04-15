@@ -15,25 +15,30 @@ export default async function ModulePage({
 
   if (!user) redirect("/login");
 
-  const { data: module } = await supabase
-    .from("modules")
-    .select("*")
-    .eq("id", params.moduleId)
-    .single();
+  // Fetch all data in parallel — none of these depend on each other
+  const [moduleRes, lessonsRes, progressRes] = await Promise.all([
+    supabase
+      .from("modules")
+      .select("*")
+      .eq("id", params.moduleId)
+      .single(),
+    supabase
+      .from("lessons")
+      .select("*")
+      .eq("module_id", params.moduleId)
+      .order("order_index"),
+    supabase
+      .from("user_lesson_progress")
+      .select("lesson_id")
+      .eq("user_id", user.id)
+      .eq("completed", true),
+  ]);
 
-  if (!module) notFound();
+  const mod = moduleRes.data;
+  if (!mod) notFound();
 
-  const { data: lessons } = await supabase
-    .from("lessons")
-    .select("*")
-    .eq("module_id", params.moduleId)
-    .order("order_index");
-
-  const { data: progress } = await supabase
-    .from("user_lesson_progress")
-    .select("lesson_id")
-    .eq("user_id", user.id)
-    .eq("completed", true);
+  const lessons = lessonsRes.data;
+  const progress = progressRes.data;
 
   const completedLessonIds = new Set(
     progress?.map((p) => p.lesson_id) ?? []
@@ -50,10 +55,10 @@ export default async function ModulePage({
             ← Back to Curriculum
           </Link>
           <div className="mt-3 flex items-center gap-3">
-            <span className="text-3xl">{module.icon}</span>
+            <span className="text-3xl">{mod.icon}</span>
             <div>
-              <h1 className="text-2xl font-bold text-white">{module.title}</h1>
-              <p className="text-sm text-gray-400">{module.description}</p>
+              <h1 className="text-2xl font-bold text-white">{mod.title}</h1>
+              <p className="text-sm text-gray-400">{mod.description}</p>
             </div>
           </div>
         </div>

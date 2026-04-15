@@ -17,38 +17,43 @@ export default async function LessonPage({
 
   if (!user) redirect("/login");
 
-  const [{ data: lesson }, { data: module }] = await Promise.all([
-    supabase
-      .from("lessons")
-      .select("*")
-      .eq("id", params.lessonId)
-      .single(),
-    supabase
-      .from("modules")
-      .select("title, icon")
-      .eq("id", params.moduleId)
-      .single(),
-  ]);
+  // Fetch all data in parallel — none of these depend on each other
+  const [lessonRes, moduleRes, exercisesRes, lessonProgressRes, exerciseProgressRes] =
+    await Promise.all([
+      supabase
+        .from("lessons")
+        .select("*")
+        .eq("id", params.lessonId)
+        .single(),
+      supabase
+        .from("modules")
+        .select("title, icon")
+        .eq("id", params.moduleId)
+        .single(),
+      supabase
+        .from("exercises")
+        .select("*")
+        .eq("lesson_id", params.lessonId)
+        .order("order_index"),
+      supabase
+        .from("user_lesson_progress")
+        .select("completed")
+        .eq("user_id", user.id)
+        .eq("lesson_id", params.lessonId)
+        .maybeSingle(),
+      supabase
+        .from("user_exercise_progress")
+        .select("exercise_id, completed")
+        .eq("user_id", user.id),
+    ]);
 
-  if (!lesson || !module) notFound();
+  const lesson = lessonRes.data;
+  const mod = moduleRes.data;
+  if (!lesson || !mod) notFound();
 
-  const { data: exercises } = await supabase
-    .from("exercises")
-    .select("*")
-    .eq("lesson_id", params.lessonId)
-    .order("order_index");
-
-  const { data: lessonProgress } = await supabase
-    .from("user_lesson_progress")
-    .select("completed")
-    .eq("user_id", user.id)
-    .eq("lesson_id", params.lessonId)
-    .maybeSingle();
-
-  const { data: exerciseProgress } = await supabase
-    .from("user_exercise_progress")
-    .select("exercise_id, completed")
-    .eq("user_id", user.id);
+  const exercises = exercisesRes.data;
+  const { data: lessonProgress } = lessonProgressRes;
+  const { data: exerciseProgress } = exerciseProgressRes;
 
   const completedExerciseIds = new Set(
     exerciseProgress
@@ -66,7 +71,7 @@ export default async function LessonPage({
             href={`/curriculum/${params.moduleId}`}
             className="text-sm text-gray-400 hover:text-gray-200"
           >
-            ← {module.icon} {module.title}
+            ← {mod.icon} {mod.title}
           </Link>
           <h1 className="mt-3 text-2xl font-bold text-white">
             {lesson.title}

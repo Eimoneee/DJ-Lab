@@ -12,22 +12,20 @@ export default async function CurriculumPage() {
 
   if (!user) redirect("/login");
 
-  const { data: modules } = await supabase
-    .from("modules")
-    .select("*")
-    .order("order_index");
+  // Fetch all data in parallel — none of these depend on each other
+  const [modulesRes, lessonsRes, progressRes] = await Promise.all([
+    supabase.from("modules").select("*").order("order_index"),
+    supabase.from("lessons").select("id, module_id").order("order_index"),
+    supabase
+      .from("user_lesson_progress")
+      .select("lesson_id")
+      .eq("user_id", user.id)
+      .eq("completed", true),
+  ]);
 
-  // Fetch lessons and progress for each module
-  const { data: lessons } = await supabase
-    .from("lessons")
-    .select("id, module_id")
-    .order("order_index");
-
-  const { data: progress } = await supabase
-    .from("user_lesson_progress")
-    .select("lesson_id")
-    .eq("user_id", user.id)
-    .eq("completed", true);
+  const modules = modulesRes.data;
+  const lessons = lessonsRes.data;
+  const progress = progressRes.data;
 
   const completedLessonIds = new Set(
     progress?.map((p) => p.lesson_id) ?? []
